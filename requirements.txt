@@ -1,2 +1,2 @@
-click
-jira
+click==6.6
+jira==1.0.7
