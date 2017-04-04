@@ -1,4 +1,5 @@
 import click
+import subprocess
 import webbrowser
 
 from work.managers import settings, jira as jira_manager
@@ -13,7 +14,7 @@ def cli(ticket):
 
     # Default to ticket for current branch
     if not ticket:
-        raise Exception('todo')
+        ticket = subprocess.Popen(['git', 'rev-parse', '--abbrev-ref', 'HEAD'], stdout=subprocess.PIPE).communicate()[0].decode().strip()
 
     if ticket.isdigit():
         ticket = '{}-{}'.format(jira_default_project, ticket)
